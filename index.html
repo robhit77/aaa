@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Aid For Answers — Financial Literacy Quiz</title>
+    <meta name="description" content="A free financial literacy quiz where correct answers fund donations to local Central Coast charities. Santa Maria, CA.">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-page="quiz">
+
+    <div id="charity-modal" class="charity-modal" role="dialog" aria-modal="true" aria-labelledby="charity-modal-title">
+      <div class="charity-modal-card">
+        <p class="eyebrow">Before you start</p>
+        <h2 id="charity-modal-title">Choose your cause</h2>
+        <p class="charity-modal-sub">Each correct answer helps fund a real donation to a local Central Coast organization you care about.</p>
+        <div class="charity-options" role="list">
+          <button class="charity-option" data-charity="rice" type="button">
+            <span class="charity-icon" aria-hidden="true">🍚</span>
+            <strong>Rice</strong>
+            <small>Donate rice to those in need</small>
+          </button>
+          <button class="charity-option" data-charity="beans" type="button">
+            <span class="charity-icon" aria-hidden="true">🫘</span>
+            <strong>Beans</strong>
+            <small>Donate beans to local families</small>
+          </button>
+          <button class="charity-option" data-charity="kibble" type="button">
+            <span class="charity-icon" aria-hidden="true">🐾</span>
+            <strong>Kibble</strong>
+            <small>Feed shelter animals locally</small>
+          </button>
+          <button class="charity-option" data-charity="ocean" type="button">
+            <span class="charity-icon" aria-hidden="true">🌊</span>
+            <strong>Ocean Plastic Cleanup</strong>
+            <small>Remove plastic from local waters</small>
+          </button>
+          <button class="charity-option" data-charity="trees" type="button">
+            <span class="charity-icon" aria-hidden="true">🌲</span>
+            <strong>Plant Trees</strong>
+            <small>Restore Central Coast forests</small>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="milestone-toast" class="milestone-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Free Aid For Answers home">
+        <span class="brand-mark" aria-hidden="true">$</span>
+        <span>
+          <strong>Free Aid For Answers</strong>
+          <small>Financial Literacy Quiz</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a aria-current="page" href="index.html">Quiz</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="quiz-shell">
+
+      <section class="intro-panel" aria-labelledby="quiz-title">
+        <p class="eyebrow">Build real money confidence</p>
+        <h1 id="quiz-title">Answer a question.<br>Help your community.</h1>
+        <p class="lead">Each correct answer earns a token and funds a real donation to a local Central Coast cause.</p>
+
+        <div class="session-stats" aria-live="polite">
+          <div class="stat">
+            <span id="bean-count" class="stat-number">0</span>
+            <small>tokens earned</small>
+          </div>
+        </div>
+
+        <div id="streak-badge" class="streak-badge hidden" aria-label="Current answer streak">
+          <span class="streak-flame" aria-hidden="true">🔥</span>
+          <span id="streak-count">0</span>
+          <span class="streak-label">in a row</span>
+        </div>
+      </section>
+
+      <section class="bowl-stage" aria-labelledby="bowl-title">
+        <div id="charity-tag" class="charity-tag hidden"></div>
+        <div class="counter-ribbon" id="counter-ribbon">You've earned 0 tokens!</div>
+        <div class="bowl-wrap" aria-hidden="true">
+          <div class="bean-shelf" id="bean-shelf"></div>
+          <div class="bowl-gloss"></div>
+          <div class="bowl"></div>
+        </div>
+        <h2 id="bowl-title">The bowl is waiting.</h2>
+        <p>Correct answers drop tokens in. No accounts, no tracking, no pressure.</p>
+      </section>
+
+      <section class="quiz-card" aria-labelledby="question-category">
+        <div class="tier-panel" aria-label="Choose quiz difficulty">
+          <p class="tier-label">Choose your level</p>
+          <div class="tier-controls" role="group" aria-label="Question difficulty">
+            <button type="button" data-difficulty="basic" aria-pressed="true">Basic</button>
+            <button type="button" data-difficulty="intermediate" aria-pressed="false">Intermediate</button>
+            <button type="button" data-difficulty="advanced" aria-pressed="false">Advanced</button>
+          </div>
+        </div>
+
+        <div class="question-meta">
+          <span id="question-category">Loading</span>
+          <span id="deck-status">Shuffling...</span>
+        </div>
+        <h2 id="question-text">Getting the first question ready.</h2>
+        <div class="answers" id="answers" role="group" aria-label="Answer choices"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>Free Aid For Answers — Santa Maria, CA</strong></p>
+      <p class="fine-print">Your correct answers support local Central Coast organizations. Donations made quarterly on behalf of players.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
