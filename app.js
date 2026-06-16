@@ -21,6 +21,12 @@
 
   const CHARITY_KEY = "faaSelectedCharity";
   const IMPACT_EVENTS_KEY = "faaImpactEvents";
+
+  const SUPABASE_URL = "https://wuofhyiliyzysnbntpij.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_zJo43n1hDzntqe5NHfd42Q_SAmlB1aN";
+  let db = null;
+  try { db = window.supabase && window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) {}
+
   const CHARITIES = {
     rice: {
       label: "Rice",
@@ -682,6 +688,17 @@
       };
       events.push(event);
       window.localStorage.setItem(IMPACT_EVENTS_KEY, JSON.stringify(events));
+      if (db) {
+        db.from("quiz_events").insert({
+          id:            event.id,
+          timestamp_iso: event.timestamp,
+          day:           event.day,
+          cause:         event.cause,
+          correct_answers: event.correctAnswers,
+          units:         event.units,
+          trees_planted: event.treesPlanted
+        }).then(function () {});
+      }
     } catch (error) {
       // Local impact reporting is optional; the quiz should still work if storage is blocked.
     }

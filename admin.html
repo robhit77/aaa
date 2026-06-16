@@ -7,8 +7,76 @@
     <meta name="description" content="Local admin dashboard for Free Aid For Answers impact totals and donation records.">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
+    <style>
+      .auth-overlay {
+        position: fixed; inset: 0; z-index: 1000;
+        background: var(--bg);
+        display: flex; align-items: center; justify-content: center;
+        padding: 2rem;
+      }
+      .auth-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: 2.5rem 2rem;
+        max-width: 380px; width: 100%;
+        text-align: center;
+      }
+      .auth-card .brand-mark {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 3rem; height: 3rem; border-radius: 50%;
+        background: var(--navy); color: #fff;
+        font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;
+      }
+      .auth-card h2 { margin: .25rem 0 .5rem; }
+      .auth-card p { color: var(--muted); margin: 0 0 1rem; font-size: .9rem; }
+      .auth-card form { display: flex; flex-direction: column; gap: .75rem; text-align: left; margin-top: 1.25rem; }
+      .auth-card label { display: flex; flex-direction: column; gap: .3rem; font-size: .875rem; font-weight: 500; }
+      .auth-card input {
+        padding: .55rem .75rem; border: 1px solid var(--border-dark);
+        border-radius: var(--radius-sm); font-size: 1rem; width: 100%;
+      }
+      .auth-card input:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+      .login-message { margin-top: .75rem; min-height: 1.25em; font-size: .875rem; color: var(--green-dark); }
+      .login-message:empty { display: none; }
+      #back-to-email { background: none; border: none; color: var(--muted); cursor: pointer; font-size: .8rem; text-decoration: underline; margin-top: .25rem; }
+      #logout-btn { background: none; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: .3rem .9rem; font-size: .8rem; color: var(--muted); cursor: pointer; }
+      #logout-btn:hover { background: var(--red-light); border-color: var(--red); color: var(--red-dark); }
+    </style>
   </head>
   <body data-page="admin">
+
+    <div id="auth-overlay" class="auth-overlay">
+      <div class="auth-card">
+        <span class="brand-mark" aria-hidden="true">$</span>
+        <p class="eyebrow">Admin access</p>
+        <h2>Impact Dashboard</h2>
+        <div id="auth-step-email">
+          <p>Enter your email to receive a sign-in code.</p>
+          <form id="login-form">
+            <label>
+              <span>Email</span>
+              <input id="login-email" type="email" autocomplete="email" required>
+            </label>
+            <button class="button-link" type="submit">Send code</button>
+          </form>
+        </div>
+        <div id="auth-step-otp" hidden>
+          <p>Enter the 6-digit code sent to your email.</p>
+          <form id="otp-form">
+            <label>
+              <span>One-time code</span>
+              <input id="login-otp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+            </label>
+            <button class="button-link" type="submit">Sign in</button>
+            <button id="back-to-email" type="button">Use a different email</button>
+          </form>
+        </div>
+        <p id="login-message" class="login-message" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="Free Aid For Answers home">
         <span class="brand-mark" aria-hidden="true">$</span>
@@ -21,10 +89,11 @@
         <a href="index.html">Quiz</a>
         <a href="about.html">About</a>
         <a aria-current="page" href="admin.html">Admin</a>
+        <button id="logout-btn" type="button" hidden>Sign out</button>
       </nav>
     </header>
 
-    <main class="admin-shell">
+    <main class="admin-shell" hidden>
       <section class="admin-hero">
         <div>
           <p class="eyebrow">Donation tracking</p>
@@ -173,9 +242,10 @@
 
     <footer class="site-footer">
       <p><strong>Free Aid For Answers - Santa Maria, CA</strong></p>
-      <p class="fine-print">Admin records are stored locally in this browser. Export your JSON regularly if you use this as the source of record.</p>
+      <p class="fine-print">Admin records are stored in Supabase. Use Export JSON for a local backup.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="admin.js"></script>
   </body>
 </html>
