@@ -100,7 +100,7 @@
         email:    els.loginEmail.value.trim(),
         password: els.loginPassword.value
       });
-      if (error) setMessage("Incorrect email or password.");
+      if (error) setMessage(error.message || "Incorrect email or password.");
     });
 
     els.logoutBtn.addEventListener("click", () => db.auth.signOut());
