@@ -17,13 +17,9 @@
 
   const els = {
     authOverlay:    document.getElementById("auth-overlay"),
-    authStepEmail:  document.getElementById("auth-step-email"),
-    authStepOtp:    document.getElementById("auth-step-otp"),
     loginForm:      document.getElementById("login-form"),
     loginEmail:     document.getElementById("login-email"),
-    otpForm:        document.getElementById("otp-form"),
-    loginOtp:       document.getElementById("login-otp"),
-    backToEmail:    document.getElementById("back-to-email"),
+    loginPassword:  document.getElementById("login-password"),
     loginMessage:   document.getElementById("login-message"),
     logoutBtn:      document.getElementById("logout-btn"),
     adminShell:     document.querySelector(".admin-shell"),
@@ -43,7 +39,6 @@
     exportData:     document.getElementById("export-data")
   };
 
-  let pendingEmail = "";
   let dashboardReady = false;
 
   document.addEventListener("DOMContentLoaded", init);
@@ -100,38 +95,12 @@
   function bindAuthEvents() {
     els.loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      pendingEmail = els.loginEmail.value.trim();
-      setMessage("Sending code…");
-      const { error } = await db.auth.signInWithOtp({
-        email: pendingEmail,
-        options: { shouldCreateUser: true }
+      setMessage("Signing in…");
+      const { error } = await db.auth.signInWithPassword({
+        email:    els.loginEmail.value.trim(),
+        password: els.loginPassword.value
       });
-      if (error) {
-        setMessage("Error: " + error.message);
-      } else {
-        els.authStepEmail.hidden = true;
-        els.authStepOtp.hidden = false;
-        setMessage("Code sent — check your email.");
-        els.loginOtp.focus();
-      }
-    });
-
-    els.otpForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      setMessage("Verifying…");
-      const { error } = await db.auth.verifyOtp({
-        email: pendingEmail,
-        token: els.loginOtp.value.trim(),
-        type: "email"
-      });
-      if (error) setMessage("Invalid or expired code. Try again.");
-    });
-
-    els.backToEmail.addEventListener("click", () => {
-      els.authStepEmail.hidden = false;
-      els.authStepOtp.hidden = true;
-      els.loginOtp.value = "";
-      setMessage("");
+      if (error) setMessage("Incorrect email or password.");
     });
 
     els.logoutBtn.addEventListener("click", () => db.auth.signOut());

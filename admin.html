@@ -52,27 +52,17 @@
         <span class="brand-mark" aria-hidden="true">$</span>
         <p class="eyebrow">Admin access</p>
         <h2>Impact Dashboard</h2>
-        <div id="auth-step-email">
-          <p>Enter your email to receive a sign-in code.</p>
-          <form id="login-form">
-            <label>
-              <span>Email</span>
-              <input id="login-email" type="email" autocomplete="email" required>
-            </label>
-            <button class="button-link" type="submit">Send code</button>
-          </form>
-        </div>
-        <div id="auth-step-otp" hidden>
-          <p>Enter the 6-digit code sent to your email.</p>
-          <form id="otp-form">
-            <label>
-              <span>One-time code</span>
-              <input id="login-otp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
-            </label>
-            <button class="button-link" type="submit">Sign in</button>
-            <button id="back-to-email" type="button">Use a different email</button>
-          </form>
-        </div>
+        <form id="login-form">
+          <label>
+            <span>Email</span>
+            <input id="login-email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            <span>Password</span>
+            <input id="login-password" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="button-link" type="submit">Sign in</button>
+        </form>
         <p id="login-message" class="login-message" role="status" aria-live="polite"></p>
       </div>
     </div>
