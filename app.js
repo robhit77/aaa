@@ -23,7 +23,7 @@
   const IMPACT_EVENTS_KEY = "faaImpactEvents";
 
   const SUPABASE_URL = "https://wuofhyiliyzysnbntpij.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_zJo43n1hDzntqe5NHfd42Q_SAmlB1aN";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1b2ZoeWlsaXl6eXNuYm50cGlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MjQzMDAsImV4cCI6MjA5NzIwMDMwMH0.EyFdHi7LvLHS9dG4vN0PR1-IYx7ybrOZYKY2UcGIhAE";
   let db = null;
   try { db = window.supabase && window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) {}
 
