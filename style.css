@@ -1,7 +1,7 @@
 /* ================================================================
    FREE AID FOR ANSWERS
    Navy authority × Green money × Gold achievement
-   Fonts: Fraunces (display/numbers) + Plus Jakarta Sans (UI)
+   Fonts: local system UI + Georgia-style display
    ================================================================ */
 
 /* --- Tokens ----------------------------------------------- */
@@ -45,8 +45,9 @@ html { min-height: 100%; background: var(--bg); }
 body {
   min-height: 100%;
   margin: 0;
+  overflow-x: hidden;
   color: var(--text);
-  font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background:
@@ -102,7 +103,7 @@ p { overflow-wrap: anywhere; }
   border-radius: 10px;
   background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
   box-shadow: 0 2px 8px rgba(22,163,74,.4);
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.1rem;
   font-weight: 900;
   color: #fff;
@@ -211,7 +212,7 @@ p { overflow-wrap: anywhere; }
 }
 
 h1 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.5rem, 3.2vw, 2.3rem);
   line-height: 1.08;
   color: #fff;
@@ -246,7 +247,7 @@ h1 {
 .stat span, .stat small { display: block; }
 
 .stat-number {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   font-weight: 900;
   line-height: 1;
@@ -434,7 +435,7 @@ h1 {
 
 .bowl-stage h2 {
   margin-top: 1rem;
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.25rem, 2.4vw, 1.75rem);
   text-align: center;
   color: var(--navy);
@@ -447,6 +448,571 @@ h1 {
   font-size: 0.85rem;
   line-height: 1.55;
   text-align: center;
+}
+
+/* --- Realistic Impact Scenes ------------------------------ */
+.impact-stage {
+  isolation: isolate;
+}
+
+.impact-stage::after {
+  content: '';
+  position: absolute;
+  inset: auto 14% 4.8rem;
+  height: 2rem;
+  background: radial-gradient(ellipse, rgba(15, 23, 42, 0.14), transparent 70%);
+  filter: blur(8px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.impact-stage--rice {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(245, 158, 11, 0.08), transparent 42%),
+    var(--surface);
+}
+
+.impact-stage--beans {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(120, 53, 15, 0.08), transparent 44%),
+    var(--surface);
+}
+
+.impact-stage--kibble {
+  background:
+    radial-gradient(ellipse at 50% 36%, rgba(217, 119, 6, 0.1), transparent 43%),
+    var(--surface);
+}
+
+.impact-stage--trees {
+  background:
+    linear-gradient(180deg, #f0fdf4 0%, #ffffff 62%);
+}
+
+.impact-stage--ocean {
+  background:
+    linear-gradient(180deg, #eff6ff 0%, #ffffff 58%);
+}
+
+.impact-scene {
+  position: relative;
+  width: min(90vw, 32rem);
+  height: 22rem;
+  margin-top: 3rem;
+  z-index: 1;
+}
+
+.impact-bowl-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+}
+
+.impact-layer,
+.impact-fill {
+  position: absolute;
+  z-index: 3;
+  left: 10%;
+  right: 10%;
+  bottom: 9.25rem;
+  height: 9.65rem;
+  overflow: hidden;
+  border-radius: 50% 50% 34% 34%;
+}
+
+.impact-fill {
+  z-index: 2;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.impact-fill::before {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 0.3rem;
+  height: var(--fill, 0%);
+  max-height: 72%;
+  border-radius: 50% 50% 18% 18%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.42), transparent 0.4rem),
+    linear-gradient(180deg, rgba(120, 53, 15, 0.22), rgba(120, 53, 15, 0.38));
+  transition: height 420ms ease;
+}
+
+.impact-stage--rice .impact-fill::before {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.95) 0 0.08rem, transparent 0.09rem),
+    radial-gradient(circle at 32% 52%, rgba(255,255,255,.85) 0 0.08rem, transparent 0.09rem),
+    radial-gradient(circle at 58% 30%, rgba(252,231,193,.9) 0 0.08rem, transparent 0.09rem),
+    linear-gradient(180deg, #fff8e7, #ead7ab);
+  background-size: 1rem 0.6rem, 1.1rem 0.65rem, 1.2rem 0.62rem, auto;
+}
+
+.impact-stage--kibble .impact-fill::before {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255,255,255,.2), transparent .35rem),
+    linear-gradient(180deg, #b86a2b, #7c3d16);
+}
+
+.realistic-bowl {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12rem;
+  border-radius: 0 0 16rem 16rem / 0 0 8.5rem 8.5rem;
+  box-shadow:
+    inset 0 -2rem 2.6rem rgba(15, 23, 42, 0.2),
+    0 2.1rem 2.8rem rgba(15, 23, 42, 0.18);
+}
+
+.realistic-bowl::before {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  left: 6%;
+  right: 6%;
+  top: -1.5rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0.5rem 0.8rem rgba(15, 23, 42, 0.12);
+}
+
+.realistic-bowl--ceramic {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.2), transparent 32%),
+    linear-gradient(155deg, #f8fafc 0%, #cbd5e1 45%, #64748b 100%);
+  border: 0.42rem solid rgba(100, 116, 139, 0.32);
+  border-top: 0.9rem solid rgba(255, 255, 255, 0.8);
+}
+
+.realistic-bowl--ceramic::before {
+  background: linear-gradient(135deg, #ffffff, #e2e8f0);
+  border: 0.36rem solid rgba(100, 116, 139, 0.28);
+}
+
+.impact-stage--beans .realistic-bowl--ceramic {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), transparent 32%),
+    linear-gradient(155deg, #e7f0ff 0%, #93c5fd 48%, #2563eb 100%);
+}
+
+.realistic-bowl--dog {
+  height: 11rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), transparent 34%),
+    linear-gradient(155deg, #ef4444 0%, #b91c1c 58%, #7f1d1d 100%);
+  border: 0.45rem solid rgba(127, 29, 29, 0.34);
+  border-top: 0.9rem solid rgba(254, 226, 226, 0.86);
+  border-radius: 0 0 13rem 13rem / 0 0 5.8rem 5.8rem;
+}
+
+.realistic-bowl--dog::before {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border: 0.36rem solid rgba(127, 29, 29, 0.26);
+}
+
+.impact-piece {
+  position: absolute;
+  display: block;
+  transform: rotate(var(--r)) scale(var(--s));
+  animation: impactDrop 560ms cubic-bezier(.2,.9,.28,1.16) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.impact-piece.settled {
+  animation: none;
+}
+
+.bean-piece {
+  width: clamp(1.08rem, 3.2vw, 1.62rem);
+  height: clamp(0.68rem, 2vw, 0.98rem);
+  background:
+    radial-gradient(circle at 28% 28%, rgba(255,255,255,.26), transparent .24rem),
+    linear-gradient(135deg, #a16207 0%, #7c2d12 54%, #431407 100%);
+  border-radius: 58% 42% 54% 46%;
+  box-shadow: inset -0.18rem -0.1rem 0 rgba(0,0,0,.22), 0 0.16rem 0.3rem rgba(67,20,7,.18);
+}
+
+.bean-piece::after {
+  content: '';
+  position: absolute;
+  top: 16%;
+  left: 47%;
+  width: 31%;
+  height: 60%;
+  border-left: 1.5px solid rgba(255, 237, 213, 0.42);
+  border-radius: 50%;
+  transform: rotate(18deg);
+}
+
+.bean-piece--2 { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.22), transparent .24rem), linear-gradient(135deg, #92400e, #5f2a12 58%, #2c1208); }
+.bean-piece--3 { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.24), transparent .24rem), linear-gradient(135deg, #b45309, #78350f 58%, #451a03); }
+
+.rice-grain {
+  width: 0.72rem;
+  height: 0.22rem;
+  background: linear-gradient(90deg, #fffdf5, #f5e8c6 70%, #d6bd82);
+  border-radius: 999px;
+  box-shadow: 0 0.08rem 0.12rem rgba(120, 53, 15, 0.12);
+}
+
+.kibble-piece {
+  width: clamp(0.95rem, 2.8vw, 1.35rem);
+  height: clamp(0.86rem, 2.5vw, 1.18rem);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 226, 166, 0.55), transparent 0.18rem),
+    radial-gradient(circle at 62% 62%, rgba(67, 20, 7, 0.22), transparent 0.16rem),
+    linear-gradient(145deg, #c47a35, #8a4618 65%, #57250d);
+  border-radius: 42% 58% 49% 51%;
+  box-shadow: inset -0.16rem -0.14rem 0 rgba(67,20,7,.22), 0 0.16rem 0.28rem rgba(67,20,7,.16);
+}
+
+.kibble-piece--2 { border-radius: 52% 44% 60% 40%; }
+.kibble-piece--3 { border-radius: 36% 64% 43% 57%; }
+.kibble-piece--4 { border-radius: 48% 52% 35% 65%; }
+
+.ocean-scene,
+.tree-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.ocean-sky {
+  position: absolute;
+  inset: 0 0 44%;
+  background: linear-gradient(180deg, #dbeafe, #f8fafc);
+}
+
+.ocean-water {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 0;
+  height: 58%;
+  background:
+    radial-gradient(ellipse at 30% 25%, rgba(255,255,255,.42), transparent 22%),
+    linear-gradient(180deg, #38bdf8, #0f766e);
+  border-radius: 48% 52% 0 0 / 16% 16% 0 0;
+}
+
+.ocean-water::after {
+  content: '';
+  position: absolute;
+  inset: 16% 6% auto;
+  height: 1rem;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.42) 0 2rem, transparent 2rem 4rem);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+.shoreline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 18%;
+  background: linear-gradient(180deg, #fde68a, #d6a75d);
+}
+
+.mesh-bag {
+  position: absolute;
+  z-index: 3;
+  left: 21%;
+  right: 21%;
+  bottom: 12%;
+  height: 54%;
+  border: 0.18rem solid rgba(15, 23, 42, 0.38);
+  border-top: 0;
+  border-radius: 0 0 4.8rem 4.8rem / 0 0 5.8rem 5.8rem;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 -1rem 1.5rem rgba(14, 116, 144, 0.18), 0 1rem 1.8rem rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+}
+
+.mesh-bag-mouth {
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  top: -0.3rem;
+  height: 1.1rem;
+  border: 0.2rem solid rgba(15, 23, 42, 0.4);
+  border-radius: 50%;
+  background: rgba(226, 232, 240, 0.64);
+  z-index: 5;
+}
+
+.mesh-weave {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg, rgba(15,23,42,.2) 0 1px, transparent 1px 0.8rem),
+    repeating-linear-gradient(-45deg, rgba(15,23,42,.16) 0 1px, transparent 1px 0.8rem);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.mesh-bag .impact-layer {
+  inset: 0.6rem 0.8rem 0.7rem;
+  height: auto;
+  border-radius: 0 0 4rem 4rem;
+}
+
+.plastic-piece {
+  box-shadow: 0 0.12rem 0.24rem rgba(15,23,42,.14);
+}
+
+.plastic-piece--straw {
+  width: 2rem;
+  height: 0.22rem;
+  background: linear-gradient(90deg, #ef4444 0 22%, #fff 22% 42%, #ef4444 42% 62%, #fff 62% 82%, #ef4444 82%);
+  border-radius: 999px;
+}
+
+.plastic-piece--bag {
+  width: 1.25rem;
+  height: 1.45rem;
+  background: rgba(226, 232, 240, 0.72);
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  border-radius: 0.2rem 0.2rem 0.45rem 0.45rem;
+}
+
+.plastic-piece--bag::before {
+  content: '';
+  position: absolute;
+  left: 28%;
+  right: 28%;
+  top: -0.18rem;
+  height: 0.42rem;
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.plastic-piece--wrapper {
+  width: 1.6rem;
+  height: 0.78rem;
+  background: linear-gradient(135deg, #facc15, #fb7185);
+  border-radius: 0.16rem;
+}
+
+.plastic-piece--cap {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: radial-gradient(circle at 35% 35%, #bfdbfe, #2563eb);
+  border-radius: 50%;
+}
+
+.plastic-piece--bottle {
+  width: 0.72rem;
+  height: 1.72rem;
+  background: linear-gradient(90deg, rgba(191,219,254,.64), rgba(59,130,246,.48), rgba(191,219,254,.68));
+  border: 1px solid rgba(37, 99, 235, 0.36);
+  border-radius: 0.25rem 0.25rem 0.42rem 0.42rem;
+}
+
+.tree-sky {
+  position: absolute;
+  inset: 0 0 24%;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(250,204,21,.35), transparent 12%),
+    linear-gradient(180deg, #dcfce7, #f8fafc);
+}
+
+.soil-bed {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: 0;
+  height: 28%;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(120, 53, 15, 0.16), transparent 10%),
+    linear-gradient(180deg, #7c4a20, #3f2210);
+  border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+}
+
+.soil-bed span {
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  top: -0.35rem;
+  height: 0.7rem;
+  background: rgba(63, 34, 16, 0.25);
+  border-radius: 50%;
+}
+
+.current-tree {
+  --growth: 0.08;
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 22%;
+  width: 8rem;
+  height: 14rem;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+}
+
+.tree-trunk {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(0.42rem + 0.5rem * var(--growth));
+  height: calc(2.1rem + 7rem * var(--growth));
+  background: linear-gradient(90deg, #78350f, #a16207, #5f2d0c);
+  border-radius: 999px 999px 0.25rem 0.25rem;
+  transform: translateX(-50%);
+  transition: height 420ms ease, width 420ms ease;
+}
+
+.tree-leaf {
+  position: absolute;
+  left: 50%;
+  bottom: calc(1.7rem + 7.2rem * var(--growth));
+  width: calc(1.5rem + 4.6rem * var(--growth));
+  height: calc(1rem + 3.5rem * var(--growth));
+  background: radial-gradient(circle at 35% 32%, #86efac, #16a34a 62%, #166534);
+  border-radius: 62% 38% 58% 42%;
+  opacity: calc(0.34 + 0.66 * var(--growth));
+  transform-origin: bottom center;
+  transition: all 420ms ease;
+}
+
+.tree-leaf--left { transform: translateX(-82%) rotate(-24deg); }
+.tree-leaf--right { transform: translateX(-18%) rotate(24deg) scaleX(-1); }
+.tree-leaf--top { transform: translateX(-50%) translateY(-18%) rotate(5deg); }
+
+.tree-grove {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.completed-tree {
+  position: absolute;
+  bottom: 22%;
+  width: 4.8rem;
+  height: 9rem;
+  transform: translateX(-50%) scale(0.78);
+  opacity: 0.72;
+}
+
+.completed-tree::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0.55rem;
+  height: 5rem;
+  background: linear-gradient(90deg, #78350f, #a16207);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.completed-tree::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3.6rem;
+  width: 4.8rem;
+  height: 4.2rem;
+  background: radial-gradient(circle at 34% 30%, #bbf7d0, #16a34a 62%, #166534);
+  border-radius: 50% 45% 52% 48%;
+  transform: translateX(-50%);
+}
+
+.completed-tree--2 { transform: translateX(-50%) scale(0.64); opacity: 0.58; }
+.completed-tree--3 { transform: translateX(-50%) scale(0.72); opacity: 0.64; }
+
+.tree-count-marker {
+  position: absolute;
+  right: 10%;
+  bottom: 34%;
+  padding: 0.25rem 0.48rem;
+  color: #166534;
+  background: rgba(220, 252, 231, 0.9);
+  border: 1px solid rgba(22, 101, 52, 0.18);
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.tag-mark,
+.charity-icon {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.tag-mark {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.35rem;
+  vertical-align: -0.16rem;
+}
+
+.tag-mark--rice,
+.charity-icon--rice {
+  background:
+    radial-gradient(ellipse at 38% 42%, #fffdf5 0 13%, transparent 14%),
+    radial-gradient(ellipse at 56% 58%, #f5e8c6 0 13%, transparent 14%),
+    #f8fafc;
+  border: 1px solid #d6bd82;
+  border-radius: 50%;
+}
+
+.tag-mark--beans,
+.charity-icon--beans {
+  background: linear-gradient(135deg, #a16207, #431407);
+  border-radius: 58% 42% 54% 46%;
+  box-shadow: inset -0.12rem -0.08rem 0 rgba(0,0,0,.2);
+}
+
+.tag-mark--kibble,
+.charity-icon--kibble {
+  background: radial-gradient(circle at 32% 30%, #f7c66b, transparent 20%), linear-gradient(135deg, #b86a2b, #57250d);
+  border-radius: 44% 56% 48% 52%;
+}
+
+.tag-mark--ocean,
+.charity-icon--ocean {
+  background: linear-gradient(180deg, #bae6fd 0 45%, #0ea5e9 46% 100%);
+  border-radius: 50%;
+}
+
+.tag-mark--trees,
+.charity-icon--trees {
+  background: radial-gradient(circle at 50% 36%, #86efac 0 34%, transparent 35%), linear-gradient(90deg, transparent 42%, #92400e 43% 57%, transparent 58%);
+  border-radius: 50%;
+}
+
+.charity-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.15rem;
+  box-shadow: inset 0 -0.16rem 0 rgba(15,23,42,.12), 0 0.2rem 0.5rem rgba(15,23,42,.12);
+}
+
+@keyframes impactDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-11rem) rotate(var(--r)) scale(calc(var(--s) * .82));
+  }
+  68% {
+    opacity: 1;
+    transform: translateY(0.42rem) rotate(var(--r)) scale(calc(var(--s) * 1.06));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--r)) scale(var(--s));
+  }
 }
 
 /* --- Quiz Card -------------------------------------------- */
@@ -564,7 +1130,7 @@ h1 {
 
 /* Question text */
 #question-text {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   font-weight: 700;
   line-height: 1.22;
@@ -749,7 +1315,7 @@ h1 {
 .about-hero .eyebrow { color: rgba(255,255,255,.45); }
 
 .about-hero h1 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.6rem, 3.5vw, 2.8rem);
   line-height: 1.05;
   color: #fff;
@@ -822,7 +1388,7 @@ h1 {
 }
 
 .about-grid h2 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   color: var(--navy);
   margin-bottom: 0.55rem;
@@ -843,7 +1409,7 @@ h1 {
 }
 
 .note-band h2 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   color: var(--navy);
   margin-bottom: 0.55rem;
@@ -869,6 +1435,247 @@ h1 {
   color: #fff;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(22,163,74,.38);
+}
+
+/* --- Admin dashboard -------------------------------------- */
+.admin-shell {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 1.25rem auto 3rem;
+}
+
+.admin-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.45fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-navy);
+  margin-bottom: 1rem;
+}
+
+.admin-hero h1 {
+  max-width: none;
+  margin: 0.45rem 0;
+}
+
+.admin-scope-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--radius);
+  color: rgba(255,255,255,.74);
+  font-size: 0.84rem;
+}
+
+.admin-scope-note strong {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.admin-panel,
+.admin-card {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-panel {
+  padding: clamp(1rem, 2vw, 1.35rem);
+  margin-bottom: 1rem;
+}
+
+.admin-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.admin-panel-heading h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: var(--navy);
+}
+
+.admin-filters,
+.donation-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.donation-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-filters label,
+.donation-form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.admin-filters input,
+.admin-filters select,
+.donation-form input,
+.donation-form select,
+.donation-form textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.7rem;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 0.9rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.donation-form textarea {
+  resize: vertical;
+  min-height: 5.6rem;
+}
+
+.donation-note {
+  grid-column: 1 / -1;
+}
+
+.admin-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.admin-card {
+  padding: 1rem;
+}
+
+.admin-card span,
+.admin-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.admin-card strong {
+  display: block;
+  margin: 0.3rem 0;
+  color: var(--navy);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  line-height: 1;
+}
+
+.admin-card small {
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
+  gap: 1rem;
+}
+
+.impact-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.impact-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.impact-table th,
+.impact-table td {
+  padding: 0.7rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.impact-table th {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.impact-table td:first-child {
+  color: var(--navy);
+}
+
+.impact-table .tag-mark {
+  margin-right: 0.45rem;
+}
+
+.empty-table {
+  color: var(--muted);
+  text-align: center;
+}
+
+.secondary-button,
+.text-button {
+  font: inherit;
+  font-weight: 800;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.secondary-button {
+  min-height: 2.35rem;
+  padding: 0 0.9rem;
+  color: var(--navy);
+  background: var(--bg);
+  border: 1px solid var(--border-dark);
+}
+
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  border-color: var(--green);
+  outline: none;
+}
+
+.text-button {
+  padding: 0.2rem 0.45rem;
+  color: var(--red-dark);
+  background: transparent;
+  border: 0;
+}
+
+.text-button:hover,
+.text-button:focus-visible {
+  color: var(--red);
+  outline: 2px solid rgba(239,68,68,.18);
+  outline-offset: 2px;
 }
 
 /* --- Keyframes -------------------------------------------- */
@@ -918,7 +1725,7 @@ h1 {
 .charity-modal-card .eyebrow { margin-bottom: 0.25rem; }
 
 .charity-modal-card h2 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.6rem, 4vw, 2.125rem);
   font-weight: 900;
   color: var(--navy);
@@ -992,9 +1799,17 @@ h1 {
   animation: modalFadeOut 0.28s ease forwards;
 }
 
+.cause-control,
 .charity-tag {
   display: inline-flex;
   align-items: center;
+}
+
+.cause-control {
+  gap: 0.35rem;
+}
+
+.charity-tag {
   gap: 0.3rem;
   background: rgba(255, 255, 255, 0.13);
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -1008,6 +1823,46 @@ h1 {
 }
 
 .charity-tag.hidden { display: none; }
+
+.cause-control.hidden { display: none; }
+
+.impact-stage .cause-control {
+  position: absolute;
+  top: 4.2rem;
+  z-index: 4;
+}
+
+.impact-stage .charity-tag {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--border);
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+
+.change-cause-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.95rem;
+  padding: 0 0.72rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  background: rgba(240, 253, 244, 0.96);
+  border: 1px solid rgba(22, 163, 74, 0.25);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.change-cause-button:hover,
+.change-cause-button:focus-visible {
+  background: var(--green-xlight);
+  border-color: var(--green);
+  outline: none;
+  transform: translateY(-1px);
+}
 
 @keyframes modalFadeIn {
   from { opacity: 0; }
@@ -1032,10 +1887,24 @@ h1 {
   h1 { max-width: 16ch; }
   .about-hero { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
+  .admin-hero,
+  .admin-grid { grid-template-columns: 1fr; }
+  .admin-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 620px) {
-  .site-header { padding: 0 1rem; }
+  .site-header { gap: 0.5rem; padding: 0 0.75rem; }
+  .brand { gap: 0.45rem; }
+  .brand-mark { width: 32px; height: 32px; }
+  .brand strong { font-size: 0.82rem; }
+  .brand small { display: none; }
+  .site-nav { gap: 2px; padding: 2px; }
+  .site-nav a {
+    min-width: auto;
+    padding: 6px 7px;
+    font-size: 0.8rem;
+  }
 
   .quiz-shell,
   .about-shell,
@@ -1057,6 +1926,16 @@ h1 {
     gap: 0.5rem;
   }
   .tier-controls small { text-align: right; }
+
+  .admin-shell { width: calc(100% - 1rem); }
+  .admin-summary,
+  .admin-filters,
+  .donation-form { grid-template-columns: 1fr; }
+  .admin-panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .secondary-button { width: 100%; justify-content: center; }
 
   .answer-button {
     grid-template-columns: 1.85rem minmax(0, 1fr);

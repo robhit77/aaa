@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard - Free Aid For Answers</title>
+    <meta name="description" content="Local admin dashboard for Free Aid For Answers impact totals and donation records.">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-page="admin">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Free Aid For Answers home">
+        <span class="brand-mark" aria-hidden="true">$</span>
+        <span>
+          <strong>Free Aid For Answers</strong>
+          <small>Admin Dashboard</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Quiz</a>
+        <a href="about.html">About</a>
+        <a aria-current="page" href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <div>
+          <p class="eyebrow">Donation tracking</p>
+          <h1>Impact dashboard</h1>
+          <p class="lead">Review correct-answer impact by day, week, month, or custom date range. Donation records stay in this browser unless exported.</p>
+        </div>
+        <div class="admin-scope-note">
+          <strong>Static-site note</strong>
+          <span>This dashboard reads local browser data. A site-wide dashboard for all visitors will need a backend or analytics endpoint.</span>
+        </div>
+      </section>
+
+      <section class="admin-panel" aria-labelledby="filters-title">
+        <div class="admin-panel-heading">
+          <div>
+            <p class="eyebrow">Filters</p>
+            <h2 id="filters-title">Review window</h2>
+          </div>
+          <button class="secondary-button" id="export-data" type="button">Export JSON</button>
+        </div>
+        <div class="admin-filters">
+          <label>
+            <span>Time period</span>
+            <select id="period-filter">
+              <option value="today">Today</option>
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="month">This month</option>
+              <option value="90">Last 90 days</option>
+              <option value="all">All time</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+          <label>
+            <span>Initiative</span>
+            <select id="cause-filter">
+              <option value="all">All initiatives</option>
+              <option value="rice">Rice</option>
+              <option value="beans">Beans</option>
+              <option value="kibble">Kibble</option>
+              <option value="ocean">Ocean Plastic Cleanup</option>
+              <option value="trees">Plant Trees</option>
+            </select>
+          </label>
+          <label>
+            <span>From</span>
+            <input id="start-date" type="date">
+          </label>
+          <label>
+            <span>Through</span>
+            <input id="end-date" type="date">
+          </label>
+        </div>
+      </section>
+
+      <section class="admin-summary" id="summary-cards" aria-label="Impact summary"></section>
+
+      <section class="admin-grid">
+        <article class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="eyebrow">Earned impact</p>
+              <h2>Initiative totals</h2>
+            </div>
+          </div>
+          <div class="impact-table-wrap">
+            <table class="impact-table">
+              <thead>
+                <tr>
+                  <th>Initiative</th>
+                  <th>Correct Answers</th>
+                  <th>Impact Earned</th>
+                  <th>Donated</th>
+                  <th>Remaining</th>
+                  <th>Through</th>
+                </tr>
+              </thead>
+              <tbody id="impact-table-body"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="admin-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="eyebrow">Ledger</p>
+              <h2>Mark a donation</h2>
+            </div>
+          </div>
+          <form class="donation-form" id="donation-form">
+            <label>
+              <span>Initiative</span>
+              <select id="donation-cause" required>
+                <option value="rice">Rice</option>
+                <option value="beans">Beans</option>
+                <option value="kibble">Kibble</option>
+                <option value="ocean">Ocean Plastic Cleanup</option>
+                <option value="trees">Plant Trees</option>
+              </select>
+            </label>
+            <label>
+              <span>Amount donated</span>
+              <input id="donation-amount" type="number" min="0" step="1" required>
+            </label>
+            <label>
+              <span>Donation date</span>
+              <input id="donation-date" type="date" required>
+            </label>
+            <label>
+              <span>Donated through</span>
+              <input id="donation-through" type="date" required>
+            </label>
+            <label class="donation-note">
+              <span>Notes / recipient</span>
+              <textarea id="donation-note" rows="3" placeholder="Example: Foodbank of Santa Barbara County"></textarea>
+            </label>
+            <button class="button-link" type="submit">Save donation</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="admin-panel" aria-labelledby="history-title">
+        <div class="admin-panel-heading">
+          <div>
+            <p class="eyebrow">Donation history</p>
+            <h2 id="history-title">Recorded donations</h2>
+          </div>
+        </div>
+        <div class="impact-table-wrap">
+          <table class="impact-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Initiative</th>
+                <th>Amount</th>
+                <th>Through</th>
+                <th>Notes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="donation-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>Free Aid For Answers - Santa Maria, CA</strong></p>
+      <p class="fine-print">Admin records are stored locally in this browser. Export your JSON regularly if you use this as the source of record.</p>
+    </footer>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
