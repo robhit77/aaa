@@ -113,6 +113,7 @@
           setMessage("No session returned — check Supabase Auth has a confirmed user.");
         } else {
           console.log("[admin] signInWithPassword success:", data.session.user.email);
+          handleSession(data.session);
         }
       } catch (err) {
         setMessage("Unexpected error: " + (err.message || String(err)));
