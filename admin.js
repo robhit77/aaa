@@ -96,11 +96,19 @@
     els.loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       setMessage("Signing in…");
-      const { error } = await db.auth.signInWithPassword({
-        email:    els.loginEmail.value.trim(),
-        password: els.loginPassword.value
-      });
-      if (error) setMessage(error.message || "Incorrect email or password.");
+      try {
+        const { data, error } = await db.auth.signInWithPassword({
+          email:    els.loginEmail.value.trim(),
+          password: els.loginPassword.value
+        });
+        if (error) {
+          setMessage(error.message || "Sign-in failed.");
+        } else if (!data?.session) {
+          setMessage("No session returned — check Supabase Auth has a confirmed user.");
+        }
+      } catch (err) {
+        setMessage("Unexpected error: " + (err.message || String(err)));
+      }
     });
 
     els.logoutBtn.addEventListener("click", () => db.auth.signOut());
