@@ -47,17 +47,21 @@
     bindAuthEvents();
 
     db.auth.onAuthStateChange((event, session) => {
+      console.log("[admin] onAuthStateChange:", event, session?.user?.email);
       if (event === "SIGNED_IN")  handleSession(session);
       if (event === "SIGNED_OUT") showLogin();
     });
 
     const { data: { session } } = await db.auth.getSession();
+    console.log("[admin] getSession:", session?.user?.email ?? "no session");
     handleSession(session);
   }
 
   function handleSession(session) {
+    console.log("[admin] handleSession:", session?.user?.email ?? "null");
     if (!session) { showLogin(); return; }
     if (session.user.email !== ADMIN_EMAIL) {
+      console.log("[admin] email mismatch, signing out");
       db.auth.signOut();
       showLogin("Access denied.");
       return;
@@ -102,9 +106,13 @@
           password: els.loginPassword.value
         });
         if (error) {
+          console.log("[admin] signInWithPassword error:", error);
           setMessage(error.message || "Sign-in failed.");
         } else if (!data?.session) {
+          console.log("[admin] signInWithPassword: no session in response", data);
           setMessage("No session returned — check Supabase Auth has a confirmed user.");
+        } else {
+          console.log("[admin] signInWithPassword success:", data.session.user.email);
         }
       } catch (err) {
         setMessage("Unexpected error: " + (err.message || String(err)));
