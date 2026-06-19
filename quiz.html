@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Financial Literacy Quiz - Free Aid For Answers</title>
+    <meta name="description" content="Test how much you really know about money — for free. Every correct answer funds a real donation to a local charity. No account, no cost, no catch.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1M0KV6E89"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Z1M0KV6E89');
+    </script>
+  </head>
+  <body data-page="quiz">
+
+    <div id="charity-modal" class="charity-modal" role="dialog" aria-modal="true" aria-labelledby="charity-modal-title">
+      <div class="charity-modal-card">
+        <p class="eyebrow">Before you start</p>
+        <h2 id="charity-modal-title">Choose your cause</h2>
+        <p class="charity-modal-sub">Each correct answer helps fund a real donation to a local Central Coast organization you care about.</p>
+        <div class="charity-options" role="list">
+          <button class="charity-option" data-charity="rice" type="button">
+            <span class="charity-icon charity-icon--rice" aria-hidden="true"></span>
+            <strong>Rice</strong>
+            <small>Donate rice to those in need</small>
+          </button>
+          <button class="charity-option" data-charity="beans" type="button">
+            <span class="charity-icon charity-icon--beans" aria-hidden="true"></span>
+            <strong>Beans</strong>
+            <small>Donate beans to local families</small>
+          </button>
+          <button class="charity-option" data-charity="kibble" type="button">
+            <span class="charity-icon charity-icon--kibble" aria-hidden="true"></span>
+            <strong>Kibble</strong>
+            <small>Feed shelter animals locally</small>
+          </button>
+          <button class="charity-option" data-charity="ocean" type="button">
+            <span class="charity-icon charity-icon--ocean" aria-hidden="true"></span>
+            <strong>Ocean Plastic Cleanup</strong>
+            <small>Remove plastic from local waters</small>
+          </button>
+          <button class="charity-option" data-charity="trees" type="button">
+            <span class="charity-icon charity-icon--trees" aria-hidden="true"></span>
+            <strong>Plant Trees</strong>
+            <small>Restore Central Coast forests</small>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="milestone-toast" class="milestone-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Free Aid For Answers home">
+        <img src="logo.png" alt="Free Aid For Answers" style="height:38px;width:auto;display:block;">
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a aria-current="page" href="quiz.html">Quiz</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ── Intro content ───────────────────────────────────── -->
+      <section class="about-shell" aria-labelledby="quiz-page-h1">
+
+        <div class="about-hero">
+          <div>
+            <p class="eyebrow">Free &middot; No account &middot; Gives back</p>
+            <h1 id="quiz-page-h1">Free Financial Literacy Quiz</h1>
+            <p class="lead">Test how much you really know about money — for free. This financial literacy quiz covers the everyday things school tends to skip: budgeting, saving, credit, taxes, and more. Every question you answer right also helps fund a real charity, so you're building your own money smarts and giving back at the same time. No account, no cost, no catch.</p>
+            <a class="button-link" href="#quiz" style="margin-top:1.25rem;">Start the quiz &darr;</a>
+          </div>
+          <div class="mini-bowl" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="about-grid" style="margin-bottom:.9rem;">
+          <article>
+            <h2>What you'll learn</h2>
+            <p style="margin-bottom:.6rem;">The questions move through the money skills that actually come up in real life:</p>
+            <ul class="page-list">
+              <li><strong>Budgeting &amp; spending</strong> — where your money goes and how to steer it.</li>
+              <li><strong>Saving &amp; emergency funds</strong> — how much cushion you really need.</li>
+              <li><strong>Credit &amp; debt</strong> — interest, scores, and staying out of trouble.</li>
+              <li><strong>Taxes, made simple</strong> — the basics, minus the jargon.</li>
+              <li><strong>Investing fundamentals</strong> — how money grows over time.</li>
+            </ul>
+          </article>
+          <article>
+            <h2>Who it's for</h2>
+            <ul class="page-list">
+              <li>Students building money skills before they need them.</li>
+              <li>Teachers who want a free, no-login classroom tool. (See the <a href="community-service.html">community service hours page</a> for the teacher toolkit and certificates.)</li>
+              <li>Anyone who wants a quick, honest gut-check on what they know.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="about-grid" style="margin-bottom:.9rem;">
+          <article>
+            <h2>How it gives back</h2>
+            <p>This isn't a quiz that just hands you a score. Every correct answer helps fund a cause you choose — fighting hunger, feeding shelter animals, cleaning the ocean, or planting trees. The ads and sponsors on the site cover the donations, so it stays free for you.</p>
+          </article>
+          <article>
+            <h2>Accurate, and free</h2>
+            <p>Our financial questions are reviewed by a licensed tax professional. These questions are written and checked for accuracy, so you're learning the real thing — not folk wisdom — and the whole quiz is free.</p>
+          </article>
+        </div>
+
+        <div class="note-band" style="text-align:center;">
+          <a class="button-link" href="#quiz" style="font-size:1.05rem;padding:.85rem 2rem;">Start the quiz &rarr;</a>
+        </div>
+
+      </section>
+
+      <!-- ── The quiz ─────────────────────────────────────────── -->
+      <div id="quiz" class="quiz-shell" style="scroll-margin-top:80px;">
+
+        <section class="intro-panel" aria-labelledby="quiz-title">
+          <p class="eyebrow">Build real money confidence</p>
+          <h2 id="quiz-title" style="font-family:Georgia,serif;font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.08;color:#fff;max-width:14ch;">Answer a question.<br>Help your community.</h2>
+          <p class="lead">Each correct answer funds a real donation to a local Central Coast cause.</p>
+
+          <div class="session-stats" aria-live="polite">
+            <div class="stat">
+              <span id="bean-count" class="stat-number">0</span>
+              <small>Correct Answers</small>
+            </div>
+          </div>
+
+          <div id="streak-badge" class="streak-badge hidden" aria-label="Current answer streak">
+            <span class="streak-flame" aria-hidden="true">+</span>
+            <span id="streak-count">0</span>
+            <span class="streak-label">in a row</span>
+          </div>
+        </section>
+
+        <section class="impact-stage bowl-stage" id="impact-stage" aria-labelledby="bowl-title">
+          <div class="cause-control hidden" id="cause-control">
+            <div id="charity-tag" class="charity-tag"></div>
+            <button class="change-cause-button" id="change-cause" type="button">Change</button>
+          </div>
+          <div class="counter-ribbon" id="counter-ribbon">0 correct answers</div>
+          <div class="impact-scene" id="impact-scene" aria-hidden="true">
+            <div class="impact-fill" id="impact-fill"></div>
+            <div class="impact-layer" id="impact-layer"></div>
+          </div>
+          <h2 id="bowl-title">The bowl is waiting.</h2>
+          <p id="impact-description">Correct answers add visible impact. No accounts, no tracking, no pressure.</p>
+        </section>
+
+        <section class="quiz-card" aria-labelledby="question-category">
+          <div class="tier-panel" aria-label="Choose quiz difficulty">
+            <p class="tier-label">Choose your level</p>
+            <div class="tier-controls" role="group" aria-label="Question difficulty">
+              <button type="button" data-difficulty="basic" aria-pressed="true">Basic</button>
+              <button type="button" data-difficulty="intermediate" aria-pressed="false">Intermediate</button>
+              <button type="button" data-difficulty="advanced" aria-pressed="false">Advanced</button>
+            </div>
+          </div>
+
+          <div class="question-meta">
+            <span id="question-category">Loading</span>
+            <span id="deck-status">Shuffling...</span>
+          </div>
+          <h2 id="question-text">Getting the first question ready.</h2>
+          <div class="answers" id="answers" role="group" aria-label="Answer choices"></div>
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>Free Aid For Answers - Santa Maria, CA</strong></p>
+      <p class="fine-print">Your correct answers support local Central Coast organizations. Donations made quarterly on behalf of players.</p>
+      <p class="fine-print"><a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="faq.html">FAQ</a> &middot; <a href="contact.html">Contact</a></p>
+      <p class="fine-print" style="margin-top:.5rem;"><a href="admin.html" style="opacity:.3;font-size:.7rem;color:inherit;">&middot;</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

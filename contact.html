@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact - Free Aid For Answers</title>
+    <meta name="description" content="Get in touch with Free Aid For Answers. Questions about the quiz, donations, or local Central Coast charities.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1M0KV6E89"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Z1M0KV6E89');
+    </script>
+    <style>
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 560px;
+      }
+      .contact-form label {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+        font-size: .9rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .contact-form input,
+      .contact-form textarea {
+        padding: .6rem .85rem;
+        border: 1px solid var(--border-dark);
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-family: inherit;
+        background: var(--surface);
+        color: var(--text);
+        width: 100%;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: 2px solid var(--green);
+        outline-offset: 1px;
+      }
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 130px;
+      }
+      .contact-success {
+        display: none;
+        background: var(--green-light, #dcfce7);
+        border: 1px solid var(--green);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        color: var(--green-dark);
+        font-size: .95rem;
+      }
+    </style>
+  </head>
+  <body data-page="about">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Free Aid For Answers home">
+        <img src="logo.png" alt="Free Aid For Answers" style="height:38px;width:auto;display:block;">
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="quiz.html">Quiz</a>
+        <a href="about.html">About</a>
+        <a aria-current="page" href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="about-shell">
+      <section class="about-hero">
+        <div>
+          <p class="eyebrow">We'd love to hear from you</p>
+          <h1>Get in touch.</h1>
+          <p class="lead">Questions about the quiz, the charities, or how donations work? Send us a note and we'll get back to you.</p>
+        </div>
+      </section>
+
+      <section class="about-grid" style="grid-template-columns: 1fr;">
+        <article>
+          <p class="eyebrow">Contact form</p>
+          <h2>Send a message</h2>
+
+          <div class="contact-success" id="contact-success" role="status">
+            Thanks for reaching out! We'll get back to you soon.
+          </div>
+
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="contact-form"
+            id="contact-form"
+          >
+            <input type="hidden" name="form-name" value="contact">
+            <label style="display:none;">
+              Don't fill this out: <input name="bot-field">
+            </label>
+
+            <label>
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" required placeholder="Jane Smith">
+            </label>
+
+            <label>
+              <span>Email address</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="jane@example.com">
+            </label>
+
+            <label>
+              <span>Subject</span>
+              <input type="text" name="subject" placeholder="Question about donations">
+            </label>
+
+            <label>
+              <span>Message</span>
+              <textarea name="message" required placeholder="What's on your mind?"></textarea>
+            </label>
+
+            <button class="button-link" type="submit">Send Message</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="note-band">
+        <h2>Operated by Heath Income Tax</h2>
+        <p>Free Aid For Answers is run by Heath Income Tax, based in Santa Maria, CA. We support local Central Coast nonprofits through quarterly donations funded by your correct answers.</p>
+        <a class="button-link" href="index.html">Start the quiz</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>Free Aid For Answers - Santa Maria, CA</strong></p>
+      <p class="fine-print">Your correct answers support local Central Coast organizations. Donations made quarterly on behalf of players.</p>
+      <p class="fine-print"><a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="faq.html">FAQ</a> &middot; <a href="contact.html">Contact</a></p>
+      <p class="fine-print" style="margin-top:.5rem;"><a href="admin.html" style="opacity:.3;font-size:.7rem;color:inherit;">&middot;</a></p>
+    </footer>
+
+    <script>
+      (function () {
+        var form = document.getElementById('contact-form');
+        var success = document.getElementById('contact-success');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var data = new FormData(form);
+          fetch('/', { method: 'POST', body: data })
+            .then(function () {
+              form.style.display = 'none';
+              success.style.display = 'block';
+            })
+            .catch(function () {
+              form.submit();
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

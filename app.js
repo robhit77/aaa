@@ -137,6 +137,15 @@
   function startApp() {
     setupCharityControls();
     try {
+      const params = new URLSearchParams(window.location.search);
+      const causeParam = params.get('cause');
+      if (causeParam && CHARITIES[causeParam]) {
+        try { window.sessionStorage.setItem(CHARITY_KEY, causeParam); } catch (e) {}
+        hideCharityPicker();
+        applyCharity(causeParam);
+        init();
+        return;
+      }
       const saved = window.sessionStorage.getItem(CHARITY_KEY);
       if (saved && CHARITIES[saved]) {
         hideCharityPicker();
