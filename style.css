@@ -175,6 +175,8 @@ p { overflow-wrap: anywhere; }
   position: relative;
   display: flex;
   align-items: center;
+  padding-bottom: 8px;  /* extends hover zone so mouse can reach the menu */
+  margin-bottom: -8px;  /* cancels layout shift from the extra padding */
 }
 
 .nav-dropdown-btn {
@@ -205,7 +207,7 @@ p { overflow-wrap: anywhere; }
 
 .nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--surface);
