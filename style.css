@@ -170,6 +170,80 @@ p { overflow-wrap: anywhere; }
   box-shadow: var(--shadow-sm);
 }
 
+/* --- Nav Dropdown ----------------------------------------- */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-btn {
+  display: block;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 140ms, color 140ms;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.nav-dropdown-btn:hover,
+.nav-dropdown:focus-within .nav-dropdown-btn { color: var(--text); background: var(--surface); }
+
+.nav-dropdown-btn[aria-current="page"] {
+  color: #fff;
+  background: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 5px;
+  list-style: none;
+  margin: 0;
+  min-width: 150px;
+  display: none;
+  z-index: 200;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+
+.nav-dropdown-menu li { margin: 0; }
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background 120ms, color 120ms;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover { color: var(--text); background: var(--bg); }
+
+.nav-dropdown-menu a[aria-current="page"] {
+  color: #fff;
+  background: var(--navy);
+}
+
 /* --- Main layout ------------------------------------------ */
 .quiz-shell {
   display: grid;
