@@ -90,7 +90,7 @@ p { overflow-wrap: anywhere; }
   justify-content: space-between;
   gap: 1rem;
   padding: 0 clamp(1rem, 3vw, 1.75rem);
-  height: 64px;
+  height: 90px;
   background: rgba(255,255,255,.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
