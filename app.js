@@ -36,7 +36,7 @@
       perAnswer: 10,
       cap: 260,
       scene: "rice",
-      emptyTitle: "The rice bowl is waiting.",
+      emptyTitle: "The bowl is waiting.",
       activeTitle: "Rice is filling the bowl.",
       description: "Each correct answer adds ten grains of rice to the donation bowl."
     },
@@ -48,7 +48,7 @@
       perAnswer: 1,
       cap: 120,
       scene: "beans",
-      emptyTitle: "The bean bowl is waiting.",
+      emptyTitle: "The jar is ready.",
       activeTitle: "Beans are filling the bowl.",
       description: "Each correct answer drops one shaded bean into the ceramic bowl."
     },
@@ -60,7 +60,7 @@
       perAnswer: 1,
       cap: 120,
       scene: "kibble",
-      emptyTitle: "The dog bowl is waiting.",
+      emptyTitle: "The pet bowl is empty.",
       activeTitle: "Kibble is filling the dog bowl.",
       description: "Each correct answer adds one textured piece of kibble for shelter animals."
     },
@@ -72,7 +72,7 @@
       perAnswer: 1,
       cap: 110,
       scene: "ocean",
-      emptyTitle: "The cleanup bag is ready.",
+      emptyTitle: "The bag is ready.",
       activeTitle: "Plastic is being collected.",
       description: "Each correct answer adds a recovered plastic item into the mesh cleanup bag."
     },
@@ -84,7 +84,7 @@
       perAnswer: 1,
       cap: 100,
       scene: "trees",
-      emptyTitle: "A seedling is ready.",
+      emptyTitle: "The grove is waiting.",
       activeTitle: "A tree is growing.",
       description: "Each correct answer grows the current seedling. Every 100 correct answers plants a tree."
     }
@@ -505,7 +505,7 @@
       state.streak = 0;
       state.pendingAdvance = true;
       button.classList.add("wrong");
-      els.feedback.textContent = `Good try. The correct answer is: ${state.currentQuestion.correctText}`;
+      els.feedback.textContent = `Not quite — the correct answer is: ${state.currentQuestion.correctText}`;
       els.feedback.classList.add("bad");
       updateStreak();
       saveSession();
